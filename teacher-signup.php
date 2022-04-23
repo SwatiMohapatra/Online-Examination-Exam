@@ -70,12 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
         else {
             $sql = "INSERT INTO user(name,t_id, pass,sec_q, sec_ans) VALUES ('$name','$t_id', '$pass1', '$sec_q', '$sec_ans')";  
-            (mysqli_query($conn, $sql));
+            mysqli_query($conn, $sql);
             
-            session_start();
-            $_SESSION['name']=$name;
-            $_SESSION['t_id']=$t_id;
-            header('location: trial.php');
+           
+            echo "<script>window.open('teacher-login.php','_self')</script>";
+
             mysqli_close($conn);    
      
         }

@@ -50,34 +50,19 @@ $conn = mysqli_connect($host, $user, $pass,'fyp');
       $year = $_POST['year'];
       $dept = $_POST['dept'];
       $division = $_POST['division'];
-      echo "<h1>$name</h1>";
-      echo "<h1>$s_id</h1>";
-      echo "<h1>$rollno</h1>";
-      echo "<h1>$year</h1>";
-      echo "<h1>$division</h1>";
-      echo "<h1>$dept</h1>";
-
-       // $queryTry = mysqli_query($conn,"INSERT INTO student(s_id,name,roll,year,dept,division) VALUES ('$s_id','$name','$rollno','$year','$dept','$division')");
-          // if($queryTry){
-          //    echo "success";
-          // }
-          // else{
-          //    echo "fail";
-          // }
-
-       // session_start();
-       // $_SESSION['s_name']=$name;
-       // $_SESSION['s_id']=$s_id;
-       // header('location: trial.php');
-       //
-        $query = "select * from student where s_id = '$s_id'";
+      
+      
+        $query = "SELECT * FROM student WHERE s_id = '$s_id'";
+	
         $result =  mysqli_query($conn, $query);
-       $rows = mysqli_num_rows($result);
+        $rows = mysqli_num_rows($result);
 
+	//echo "<h1>$rows</h1>";
           if ($rows !=0)
           {
               echo "s_id already exists";
-              header("Location: student-signup.php"); /* Redirect browser */
+              echo "<script>window.open('student-signup.php','_self')</script>";
+
               exit();
 
           }
@@ -90,8 +75,13 @@ $conn = mysqli_connect($host, $user, $pass,'fyp');
               session_start();
               $_SESSION['s_name']=$name;
               $_SESSION['s_id']=$s_id;
-              $_SESSION['rollno']=$rollno;
-              header("location: student-signup-set-password.php");
+              // $_SESSION['rollno']=$rollno;
+              $_SESSION['is_student']=1;
+             echo "<script>window.open('student-set-password.php','_self')</script>";
+
+// echo "<h1>$rows</h1>";
+// $res = mysqli_fetch_array($result);
+// echo "<h1>$result</h1>";
               mysqli_close($conn);
 
           }
