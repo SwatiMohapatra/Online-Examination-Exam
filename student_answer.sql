@@ -24,40 +24,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `student_answer`
 --
 
-CREATE TABLE `user` (
-  `name` varchar(100) NOT NULL,
-  `t_id` varchar(15) NOT NULL,
-  `pass` varchar(30) NOT NULL,
-  `sec_q` varchar(10) NOT NULL,
-  `sec_ans` varchar(50) NOT NULL
+CREATE TABLE `student_answer` (
+  `s_id` int(11) NOT NULL,
+  `exam_id` int(11) NOT NULL,
+  `q_id` int(11) NOT NULL,
+  `ans` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `student_answer`
 --
 
-INSERT INTO `user` (`name`, `t_id`, `pass`, `sec_q`, `sec_ans`) VALUES
-('Swati Mohapatra', '1000', 'swati', 'college', 'dfd'),
-('soni', '17', 'soni', 'college', 'asd'),
-('Swati1701', '1701', 'swati', 'birth_year', '1701'),
-('Swati Mohapatra', '2', 'swati', 'birth_year', '2001'),
-('debu', '2001', 'debu', 'subject', 'toc'),
-('ashu', '3', 'ashu', 'birth_year', '2003'),
-('mangu', '30', 'mangu', 'college', 'dmce'),
-('sasmita', '4', 'sasmita', 'birth_year', '1974');
+INSERT INTO `student_answer` (`s_id`, `exam_id`, `q_id`, `ans`) VALUES
+(1000, 35, 1, 'C');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `user`
+-- Indexes for table `student_answer`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`t_id`);
+ALTER TABLE `student_answer`
+  ADD PRIMARY KEY (`s_id`,`exam_id`,`q_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
