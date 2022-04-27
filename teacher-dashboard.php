@@ -1,4 +1,11 @@
+<?php
+  $host = 'localhost';  
+        $user = 'root';  
+        $password = '';  
+        $conn = mysqli_connect($host, $user, $password,'fyp') or die("connection failed"); 
+        session_start();
 
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,11 +78,7 @@
                   <li><a href="alerts.html" style="color: #ffffff;"><i class="ti-alert"></i> Alerts </a></li>
                   
 <?php 
-        $host = 'localhost';  
-        $user = 'root';  
-        $password = '';  
-        $conn = mysqli_connect($host, $user, $password,'fyp') or die("connection failed"); 
-        session_start(); 
+         
         // echo $_SESSION['flag'];
         if(!isset($_SESSION['flag'])){
           // header("location: teacher-login.php");
@@ -92,15 +95,17 @@
         while ($row = mysqli_fetch_assoc($extracted)){
             
            ?>
-           <form action="backend.php">
-            Title : <?= $row['title']; ?> <br>
-            Subject :<?= $row['subject']; ?> <br>
-            Total Marks : <?= $row['totalmarks']; ?>  <br>
-</form>
-           <?php }
-        
+           <form action="display_examdata.php" method="post">
+           Exam ID :  <input type="text" name='examId' value="<?= $row['examid'] ?>" hidden >  <?= $row['examid'];?>  <br>
+            Title : <input type="text" name="title"  value="<?= $row['title'];?>" disabled hidden> <?= $row['title'];?>  <br>
+            Subject :  <input type="text" name="subject" value="<?= $row['subject'];?>" disabled hidden> <?= $row['subject'];?> <br>
+            Total Marks :  <input type="text" name="totalmarks"  value="<?= $row['totalmarks'];?>" disabled hidden>  <?= $row['totalmarks'];?>  <br>
+            Date  :  <input type="text" name="date"  value="<?= $row['date'];?>" disabled hidden>  <?= $row['date'];?>  <br>
+            <input type="submit" name='submit' value='Click Here'>
+            </form>
+           <?php } ?> 
 
-?>
+
 
                   <li><a href="logout.php"><i class="ti-close"></i> Logout</a></li>
               </ul>

@@ -17,6 +17,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
   $_SESSION['q_id']= $_SESSION['q_id']+1;
   $q_id = $_SESSION['q_id'];
   $examid = $_SESSION['exam_id'];
+  echo "exam - ".$examid;
+  echo "question - ".$q_id;
         $query = "INSERT INTO exam_question(q_id, question, option_A, option_B, option_C, option_D, ans, mark, exam_id) VALUES ('$q_id', '$question', '$optionA', '$optionB', '$optionC', '$optionD', '$ans', '$mark', '$examid');";
 
 mysqli_query($conn, $query);

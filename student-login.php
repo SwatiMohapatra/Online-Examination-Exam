@@ -83,7 +83,7 @@ session_start();
                   $f = mysqli_num_rows($res);
 
                   if ($f > 0) {
-                    $_SESSION['s_id'] = $s_id;
+                    $_SESSION['s_id'] = $id;
                     echo "<script>window.open('student-dashboard.php','_self')</script>";
                   } else {
                     echo "<script>alert('Kindly check your login credentials')</script>";
