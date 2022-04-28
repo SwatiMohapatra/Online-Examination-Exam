@@ -11,9 +11,6 @@
         
 
 
-
-
-
 $exam_id = $_POST['examId'];
 
 $query = "select * from exam_question where exam_id='$exam_id' order by q_id";
@@ -56,9 +53,44 @@ while ($row = mysqli_fetch_assoc($extracted)){
 
 // echo "<script>window.open('create_exam.php','_self')</script>";
 ?>
+</table>
 
 <br>
-Here are the details of students who attempted the trait_exists
+Here are the details of students who attempted the exam
 <!-- add the details here -->
 <a href="teacher-dashboard.php">Next</a>
 
+<?php 
+
+$query = mysqli_query($conn, "select * from score natural join student where exam_id='$exam_id'");
+?>
+
+<table class="table table-hover">
+<thead class="thead-light">
+<tr>
+      <!-- <th scope="col">#</th> -->
+      <th scope="col">Student ID</th>
+      <th scope="col">ROll no</th>
+      <th scope="col">Student name</th>
+      <th scope="col">Score</th>
+    </tr>
+  </thead> 
+
+  <?php   
+while ($row = mysqli_fetch_assoc($query)){
+?>          
+    <tbody>
+    <tr>
+      <th scope="row"><?php echo $row['s_id'] ?></th>
+      <td><?= $row['rollno']?></td>
+      <td><?= $row['name']?></td>
+      <td><?= $row['score']?></td>
+
+      
+    </tr> 
+            <?php
+            } 
+
+// echo "<script>window.open('create_exam.php','_self')</script>";
+?>
+</table>

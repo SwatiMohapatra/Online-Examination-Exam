@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2022 at 04:39 PM
+-- Generation Time: Apr 28, 2022 at 07:48 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -48,7 +48,8 @@ INSERT INTO `exam_detail` (`examid`, `title`, `teacher`, `subject`, `totalmarks`
 (27, 'AI', 1000, 'sdfsd', 20, '00:00:00', '2022-04-21'),
 (29, 'NLP', 1701, ';jkjnk', 70, '00:00:00', '2022-04-22'),
 (35, '45', 1701, 'jgdyrs', 45, '838:59:59', '2022-04-24'),
-(42, 'khihOU', 1701, 'fyt', 34, '838:59:59', '2022-04-24');
+(42, 'khihOU', 1701, 'fyt', 34, '838:59:59', '2022-04-24'),
+(46, 'EVS', 17, 'EVS', 20, '00:00:05', '2022-04-28');
 
 -- --------------------------------------------------------
 
@@ -82,9 +83,33 @@ INSERT INTO `exam_question` (`q_id`, `question`, `option_A`, `option_B`, `option
 (1, 'rilhguf', 'ihug', 'khvuyf', 'jvhlj', 'jhfu', 'B', 24, 35),
 (1, 'fbiyf', 'hg', 'gkjhg', 'kjhg', 'kjhg', 'A', 56, 42),
 (1, 'obfugy', 'lugyfu', 'iyft7', 'oguif7', 'og7fi86', 'A', 34, 45),
+(1, 'What is evs', 'environment', 'science', 'environmental science', 'none', 'C', 1, 46),
 (2, 'The following areas where nlp can be useful kshdiuhasdanbsdgasdhashdasdd', 'Automatic Text Summarizatio', ' Information Retrieval', ' Automatic Question-Answering Systems', 'All of these', 'D', 1, 21),
 (2, 'dsd', 'sdad', 'distjfs', 'sd', 'sd', 'D', 0, 27),
-(2, 'jkhjg', 'distrubuted computing', 'distjf', 'sdf', 'sdf', 'B', 0, 29);
+(2, 'jkhjg', 'distrubuted computing', 'distjf', 'sdf', 'sdf', 'B', 0, 29),
+(2, 'sun rises in?', 'east', 'west', 'north', 'south', 'A', 1, 46),
+(3, 'synonym for jungle?', 'forest', 'animal', 'dog', 'cat', 'A', 1, 46),
+(4, 'Who is current captain?', 'dhoni', 'virat', 'rohit', 'rahul', 'C', 1, 46);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `score`
+--
+
+CREATE TABLE `score` (
+  `s_id` int(11) NOT NULL,
+  `exam_id` int(11) NOT NULL,
+  `score` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `score`
+--
+
+INSERT INTO `score` (`s_id`, `exam_id`, `score`) VALUES
+(2, 46, 1),
+(2001, 46, 3);
 
 -- --------------------------------------------------------
 
@@ -109,6 +134,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`s_id`, `name`, `rollno`, `year`, `dept`, `division`, `password`, `sec_q`, `sec_ans`) VALUES
+('02', 'bipin', 2, 3, 'comps', 'A', 'bipin', 'nickname', 'bipin'),
 ('1000', 'swati', 3, 1, 'comps', 'A', 'swati', 'nickname', 'jfij'),
 ('17', 'abd', 17, 1, 'comps', 'A', '1', 'subject', 'ds'),
 ('20', 'mj', 20, 1, 'comps', 'A', '20', 'nickname', 'hghg'),
@@ -128,15 +154,22 @@ CREATE TABLE `student_answer` (
   `s_id` int(11) NOT NULL,
   `exam_id` int(11) NOT NULL,
   `q_id` int(11) NOT NULL,
-  `ans` varchar(2) NOT NULL
+  `answer` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `student_answer`
 --
 
-INSERT INTO `student_answer` (`s_id`, `exam_id`, `q_id`, `ans`) VALUES
-(1000, 35, 1, 'C');
+INSERT INTO `student_answer` (`s_id`, `exam_id`, `q_id`, `answer`) VALUES
+(2, 46, 1, 'A'),
+(2, 46, 2, 'B'),
+(2, 46, 3, 'A'),
+(2, 46, 4, 'A'),
+(2001, 46, 1, 'C'),
+(2001, 46, 2, 'B'),
+(2001, 46, 3, 'A'),
+(2001, 46, 4, 'C');
 
 -- --------------------------------------------------------
 
@@ -183,6 +216,12 @@ ALTER TABLE `exam_question`
   ADD PRIMARY KEY (`q_id`,`exam_id`);
 
 --
+-- Indexes for table `score`
+--
+ALTER TABLE `score`
+  ADD PRIMARY KEY (`s_id`,`exam_id`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
@@ -208,7 +247,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `exam_detail`
 --
 ALTER TABLE `exam_detail`
-  MODIFY `examid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `examid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
